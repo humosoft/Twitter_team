@@ -76,17 +76,17 @@ export default function Password() {
             )}
 
             <div className="mt-4 mb-2 ">
-              <button className="btn btn-success ">Log in</button>
+              <button className="btn btn-login">Log in</button>
             </div>
           </form>
 
           {type === "password" ? (
             <span className="icon-span" onClick={() => setType("text")}>
-              <img src={CloseEye} />
+              <img className="eye" src={CloseEye} />
             </span>
           ) : (
             <span className="icon-span" onClick={() => setType("password")}>
-              <img src={OpenEye} />
+              <img className="eye" src={OpenEye} />
             </span>
           )}
         </div>

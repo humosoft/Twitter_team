@@ -5,14 +5,14 @@ import Password from './password/Password'
 
 export default function Login() {
   return (
-    <div>
-        <h1>
+    <div className='twit-div'>
+        <h1 className='logo-h1'>
             <a href="#">
-                <img src={Logo} />
+                <img className='logo-twit' src={Logo} />
             </a>
         </h1>
 
-        <h2>Log in to Twitter</h2>
+        <h2 className='log-h2'>Log in to Twitter</h2>
         <Password />
     </div>
   )
