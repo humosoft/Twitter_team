@@ -28,8 +28,7 @@ export default function Password() {
       /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
 
     if (values.password_input === "") {
-      error.password_input = "Password should not be empty" ;
-      
+      error.password_input = "Password should not be empty";
     } else if (!password_RegExp.test(values.password_input)) {
       const erdet = (
         <details>
@@ -51,16 +50,44 @@ export default function Password() {
     return error;
   }
 
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  const emailValidation = () => {
+    const regMail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+
+    if (regMail.test(email)) {
+      setMessage("Email is true");
+    } else if (!regMail.test(email) && email !== "") {
+      const errmail = (
+        <details>
+          <summary>Email is not match</summary> "Make sure it looks like the
+          email example: test@gmail.com""
+        </details>
+      );
+      setMessage(errmail);
+    } else {
+      setMessage("");
+    }
+  };
+
+  const handleOnChange = (e) => {
+    setEmail(e.target.value);
+  };
+
   return (
     <div className="wrapper bg-blue">
       <div className="box">
         <div className="icon-div">
           <form onSubmit={handleValidation}>
             <input
-              onChange={handleChange}
+              onChange={handleOnChange}
               placeholder="Phone number, email address"
               className="custom-input inp"
+              value={email}
             />
+
+            <p style={{ color: "red" }}>{message}</p>
 
             <input
               name="password_input"
@@ -76,7 +103,9 @@ export default function Password() {
             )}
 
             <div className="mt-4 mb-2 ">
-              <button className="btn btn-login">Log in</button>
+              <button onClick={emailValidation} className="btn btn-login">
+                Log in
+              </button>
             </div>
           </form>
 
